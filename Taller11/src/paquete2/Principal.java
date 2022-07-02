@@ -1,7 +1,13 @@
 
 package paquete2;
 
-import taller11.*;
+import paquete1.MenuNinios;
+import paquete1.Menu;
+import paquete1.Cuenta;
+import paquete1.MenuEconom;
+import paquete1.MenuCarta;
+import paquete1.MenuDia;
+import java.util.ArrayList;
 
 /**
  *
@@ -55,42 +61,31 @@ public class Principal {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        MenuNinios mn = new MenuNinios();
-        mn.establecerNomPlato("Niños 01");
-        mn.establecervIMenu(2);
-        mn.establecervHela(1);
-        mn.establecervPast(1.5);
-        mn.establecerValorCancelar();
+        ArrayList <Menu> menu = new ArrayList<>();
+        MenuNinios mn = new MenuNinios("Niños 01", 2, 1, 1.5);
+        menu.add(mn);
         
-        MenuNinios mn2 = new MenuNinios();
-        mn2.establecerNomPlato("Niños 02");
-        mn2.establecervIMenu(3);
-        mn2.establecervHela(1);
-        mn2.establecervPast(1.5);
-        mn2.establecerValorCancelar();
+        MenuNinios mn2 = new MenuNinios("Niños 02", 3, 1, 1.5);
+        menu.add(mn2);
         
-        MenuEconom me = new MenuEconom();
-        me.establecerNomPlato("Econo 001");
-        me.establecervIMenu(4);
-        me.establecerPor(25);
-        me.calcularVMenu();
+        MenuEconom me = new MenuEconom("Econo 001", 4, 25);
+        menu.add(me);
         
-        MenuDia mdia = new MenuDia();
-        mdia.establecerNomPlato("Dia 001");
-        mdia.establecervIMenu(5);
-        mdia.establecervBeb(1);
-        mdia.establecervPost(1);
-        mdia.establecerValorCancelar();
+        MenuDia mdia = new MenuDia("Dia 001", 5, 1, 1);
+        menu.add(mdia);
         
+        MenuCarta mC = new MenuCarta("Carta 001", 6, 1.5, 2, 10);  
+        menu.add(mC);
         
-        MenuCarta mC = new MenuCarta();
-        mC.establecerNomPlato("Carta 001");
-        mC.establecervIMenu(6);
-        mC.establecerVGuar(1.5);
-        mC.establecervBeb(2);
-        mC.establecerPor(10);
-        mC.establecerValorCancelar();
+        for (int i = 0; i < menu.size(); i++) {
+            menu.get(i).establecerVMenu();
+        }
         
+        Cuenta cuenta = new Cuenta("René Elizalde", menu, 10);
+        cuenta.establecerSubtotal();
+        cuenta.establecerValorCancelar();
+
+        System.out.println(cuenta);
     }
     
 }
